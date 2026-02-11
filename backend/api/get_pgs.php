@@ -10,8 +10,8 @@ require __DIR__ ."/../config/db.php";
 
 try{
     $stmt = $pdo ->prepare(
-        "SELECT id,name,rent,deposit, gender, food, distance, verified
-         FROM pgs
+        "SELECT id, name, rent, deposit, gender, description 
+         FROM pgs;
          WHERE verified =1
          ORDER by distance ASC"
     );
