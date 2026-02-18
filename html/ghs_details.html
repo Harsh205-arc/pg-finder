@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GHS – Manipal University Jaipur</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/details.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="navbar">
+    <h2>PBL-2 Project</h2>
+    <a href="explore.html">← Back to Listings</a>
+</header>
+
+<section class="hero">
+
+    <div class="hero-text">
+        <h1>GHS – Manipal University Jaipur</h1>
+        <p class="location">📍 Jaipur, Rajasthan</p>
+        <p class="rating">⭐ 4.3 / 5 (124 Reviews)</p>
+        <p class="price">Starting from 1,50,000 yearly</p>
+        <button class="book-btn">Book Now</button>
+    </div>
+
+    <div class="gallery">
+        <img id="mainImage" src="../assets/ghs1.jpg" alt="GHS Main Image" class="main-img">
+
+        <div class="thumbnails">
+            <img src="../assets/ghs1.jpg" onclick="changeImage(this)">
+            <img src="../assets/ghs2.jpg" onclick="changeImage(this)">
+            <img src="../assets/ghs3.jpg" onclick="changeImage(this)">
+            <img src="../assets/ghs4.jpg" onclick="changeImage(this)">
+        </div>
+    </div>
+
+</section>
+
+<section class="about">
+    <h2>About GHS</h2>
+    <p>
+        GHS provides modern, secure, and fully furnished accommodation
+        for students of Manipal University Jaipur. Located within walking
+        distance from campus, it offers spacious rooms, hygienic mess,
+        high-speed WiFi, and 24/7 security.
+    </p>
+</section>
+
+<section class="amenities">
+    <h2>Amenities</h2>
+    <ul>
+        <li>Campus Wide WiFi</li>
+        <li>AC Rooms</li>
+        <li>Attached Bathrooms</li>
+        <li>24/7 Security & CCTV</li>
+        <li>Mess Facility</li>
+        <li>Laundry Service</li>
+        <li>Power Backup</li>
+        <li>Study Area</li>
+        <li>Receational Area</li>
+    </ul>
+</section>
+
+<section class="rooms">
+    <h2>Room Types</h2>
+
+    <div class="room-card">
+        <h3>Double Sharing</h3>
+        <p>₹1,73,000 yearly</p>
+        <ul>
+            <li>Seperate Bed</li>
+            <li>Study Table</li>
+            <li>Wardrobe</li>
+            <li>Attached Bathroom</li>
+        </ul>
+    </div>
+
+    <div class="room-card">
+        <h3>Triple Sharing</h3>
+        <p>₹1,50,000 yearly</p>
+        <ul>
+            <li>Shared Room</li>
+            <li>Wardrobe</li>
+            <li>Seperate study table</li>
+        </ul>
+    </div>
+</section>
+
+<section class="location">
+    <h2>Location</h2>
+    <p>2 minutes from MUJ Main Gate</p>
+    <p>Nearby cafes, grocery stores & medical shops</p>
+</section>
+
+<section class="reviews">
+    <h2>Student Reviews</h2>
+
+    <div class="review">
+        <p>⭐⭐⭐⭐⭐</p>
+        <p>"Very clean and peaceful environment."</p>
+        <small>– Rohan Sharma</small>
+    </div>
+
+    <div class="review">
+        <p>⭐⭐⭐⭐</p>
+        <p>"Rooms are spacious and food quality is good."</p>
+        <small>– Priya Mehta</small>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 PBL-2 Project</p>
+</footer>
+
+<script>
+function changeImage(element) {
+    document.getElementById("mainImage").src = element.src;
+}
+</script>
+
+</body>
+</html>

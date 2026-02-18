@@ -1,29 +1,112 @@
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+/* ===== Global ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+}
+
+/* ===== Navbar (Same as Details) ===== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 60px;
+    background: white;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.navbar h2 {
+    color: #1e3a8a;
+}
+
+.navbar a {
+    text-decoration: none;
+    color: #1e293b;
+    font-weight: 500;
+}
+
+.navbar a:hover {
+    color: #1e3a8a;
+}
+
+/* ===== Hero Section ===== */
+.explore-hero {
+    padding: 60px;
+    text-align: center;
+}
+
+.explore-hero h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    color: #0f172a;
+}
+
+.explore-hero p {
+    color: #64748b;
+}
+
+/* ===== PG Cards Section ===== */
+.pg-section {
+    padding: 40px 60px;
+}
+
+#pg-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* ===== Card Style (Matches Details Page) ===== */
 .pg-card {
-  background: white;
-  padding: 15px;
-  margin: 15px 0;
-  border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: white;
+    padding: 25px;
+    border-radius: 14px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+    transition: 0.3s ease;
+}
+
+.pg-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
 }
 
 .pg-card h3 {
-  margin-bottom: 10px;
+    margin-bottom: 10px;
+    color: #1e3a8a;
 }
 
+.pg-card p {
+    margin-bottom: 6px;
+    color: #475569;
+}
+
+/* ===== Button Style (Same Theme) ===== */
 .view-btn {
-  padding: 8px 12px;
-  border: none;
-  background: #007bff;
-  color: white;
-  border-radius: 5px;
-  cursor: pointer;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background: #1e3a8a;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
 
 .view-btn:hover {
-  background: #0056b3;
+    background: #172554;
+}
+
+/* ===== Footer ===== */
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #1e293b;
+    color: white;
+    margin-top: 40px;
 }

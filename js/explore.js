@@ -1,4 +1,4 @@
-fetch("backend/api/get_pgs.php")
+fetch("../backend/api/get_pgs.php")
     .then(response => response.json())
     .then(data => {
         console.log("Data received:", data);
@@ -29,8 +29,6 @@ fetch("backend/api/get_pgs.php")
   div.appendChild(button);
   pgList.appendChild(div);
 });
-
-
 
     })
     .catch(error => {
