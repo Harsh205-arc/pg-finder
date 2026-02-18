@@ -7,7 +7,12 @@
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #f8fafc;
+    background: linear-gradient(
+        180deg,
+        #f0f4ff 0%,
+        #f8fafc 40%,
+        #ffffff 100%
+    );
     color: #1e293b;
 }
 
@@ -53,22 +58,39 @@ body {
 
 /* ===== PG Cards Section ===== */
 .pg-section {
-    padding: 40px 60px;
+    padding: 60px 120px;
 }
 
 #pg-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
 }
 
 /* ===== Card Style (Matches Details Page) ===== */
-.pg-card {
+.pg-card {/*==========pg-card class=====*/
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
     background: white;
-    padding: 25px;
-    border-radius: 14px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-    transition: 0.3s ease;
+    padding: 30px;
+    border-radius: 16px;
+
+    border: 1px solid rgba(30, 58, 138, 0.08);
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.pg-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 35px rgba(0,0,0,0.08);
+}
+
+.pg-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.08);
 }
 
 .pg-card:hover {

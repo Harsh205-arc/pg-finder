@@ -18,13 +18,18 @@ fetch("../backend/api/get_pgs.php")
   });
 
   div.innerHTML = `
-    <h3>${pg.name}</h3>
-    <p><strong>Rent:</strong> ₹${pg.rent}</p>
-    <p><strong>Deposit:</strong> ₹${pg.deposit}</p>
-    <p><strong>Gender:</strong> ${pg.gender}</p>
-    <p>${pg.description.substring(0, 60)}...</p>
+    <div class="pg-info">
+        <h3>${pg.name}</h3>
+        <p><strong>Rent:</strong> ₹${pg.rent}</p>
+        <p><strong>Deposit:</strong> ₹${pg.deposit}</p>
+        <p><strong>Gender:</strong> ${pg.gender}</p>
+        <p>${pg.description.substring(0, 80)}...</p>
+    </div>
 
-  `;
+    <div class="pg-action">
+        <button class="view-btn">View Details</button>
+    </div>
+`;
 
   div.appendChild(button);
   pgList.appendChild(div);
