@@ -4,28 +4,20 @@ const id = params.get("id");
 
 console.log("PG ID:", id);
 
-fetch("backend/api/get_pgs.php")
-  .then(response => response.json())
+fetch(`../backend/api/get_details.php?id=${id}`)
+  .then(res => res.json())
   .then(data => {
-
-    const pg = data.data.find(item => item.id == id);
+    const pg = data.data;
 
     const container = document.getElementById("pg-details");
 
-    if (pg) {
-      container.innerHTML = `
-        <h2>${pg.name}</h2>
-        <p><strong>Rent:</strong> ₹${pg.rent}</p>
-        <p><strong>Deposit:</strong> ₹${pg.deposit}</p>
-        <p><strong>Gender:</strong> ${pg.gender}</p>
-        <p><strong>Description:</strong> ${pg.description}</p>
-
-      `;
-    } else {
-      container.innerHTML = "<p>PG not found</p>";
-    }
-
+   container.innerHTML = `
+  <div class="hero-text">
+    <h1>${pg.name}</h1>
+    <p class="price">₹${pg.rent}</p>
+    <p>${pg.description}</p>
+    <button class="book-btn">Book Now</button>
+  </div>
+`;
   })
-  .catch(error => {
-    console.error("Error loading details:", error);
-  });
+  .catch(err => console.error(err));
