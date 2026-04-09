@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Explore PGs | PG Finder</title>
-    <!-- Tailwind CSS via CDN for instant styling -->
+    <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -13,7 +13,7 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#4f46e5', // Indigo-600
+                        primary: '#4f46e5',
                     }
                 }
             }
@@ -31,14 +31,8 @@
                     <span class="font-bold text-xl tracking-tight text-gray-900">PG Finder</span>
                 </div>
                 <div class="hidden md:flex space-x-8">
-                    <a href="#" class="text-gray-500 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Home</a>
                     <a href="#" class="text-primary border-b-2 border-primary px-3 py-2 text-sm font-medium">Explore</a>
-                    <a href="#" class="text-gray-500 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Saved</a>
-                </div>
-                <div class="flex items-center gap-4">
-                    <button class="bg-primary hover:bg-indigo-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors">
-                        Sign In
-                    </button>
+                    <a href="html/add_pg.html" class="text-gray-500 hover:text-primary px-3 py-2 rounded-md text-sm font-medium">Add Hostel</a>
                 </div>
             </div>
         </div>
@@ -46,53 +40,54 @@
 
     <!-- Main Content Area -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex flex-col md:flex-row gap-8">
-        
+
         <!-- Sidebar Filters -->
         <aside class="w-full md:w-1/4 bg-white p-6 rounded-xl shadow-sm border border-gray-100 h-fit sticky top-24">
             <div class="flex justify-between items-center mb-6">
                 <h2 class="text-lg font-bold text-gray-900">Filters</h2>
-                <button class="text-sm text-primary hover:underline">Clear all</button>
-            </div>
-
-            <!-- Location Search -->
-            <div class="mb-6">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Location</label>
-                <div class="relative">
-                    <i class="fa-solid fa-location-dot absolute left-3 top-3 text-gray-400"></i>
-                    <input type="text" placeholder="City or area..." class="w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent text-sm">
-                </div>
+                <button id="clearFilters" class="text-sm text-primary hover:underline">Clear all</button>
             </div>
 
             <!-- Budget -->
             <div class="mb-6">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Monthly Budget (₹)</label>
-                <input type="range" min="3000" max="25000" class="w-full accent-primary">
+                <label class="block text-sm font-medium text-gray-700 mb-2">
+                    Monthly Budget: <span id="budgetLabel">₹25,000+</span>
+                </label>
+                <input id="budgetFilter" type="range" min="3000" max="25000" value="25000" step="500" class="w-full accent-primary">
                 <div class="flex justify-between text-xs text-gray-500 mt-2">
                     <span>₹3k</span>
                     <span>₹25k+</span>
                 </div>
             </div>
 
-            <!-- Room Type -->
+            <!-- Gender Filter -->
             <div class="mb-6">
-                <label class="block text-sm font-medium text-gray-700 mb-2">Room Type</label>
+                <label class="block text-sm font-medium text-gray-700 mb-2">Gender</label>
                 <div class="space-y-2">
                     <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-                        <input type="checkbox" class="rounded text-primary focus:ring-primary border-gray-300">
-                        Single Room
+                        <input type="checkbox" value="boys" class="gender-filter rounded text-primary focus:ring-primary border-gray-300" checked>
+                        Boys
                     </label>
                     <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-                        <input type="checkbox" class="rounded text-primary focus:ring-primary border-gray-300" checked>
-                        Double Sharing
+                        <input type="checkbox" value="girls" class="gender-filter rounded text-primary focus:ring-primary border-gray-300" checked>
+                        Girls
                     </label>
                     <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
-                        <input type="checkbox" class="rounded text-primary focus:ring-primary border-gray-300">
-                        Triple+ Sharing
+                        <input type="checkbox" value="unisex" class="gender-filter rounded text-primary focus:ring-primary border-gray-300" checked>
+                        Unisex
                     </label>
                 </div>
             </div>
 
-            <button class="w-full bg-primary hover:bg-indigo-700 text-white py-2.5 rounded-lg text-sm font-semibold transition-colors mt-2">
+            <!-- Food Filter -->
+            <div class="mb-6">
+                <label class="flex items-center gap-2 text-sm text-gray-700 cursor-pointer font-medium">
+                    <input type="checkbox" id="foodFilter" class="rounded text-primary focus:ring-primary border-gray-300">
+                    Food Included Only
+                </label>
+            </div>
+
+            <button id="applyFilters" class="w-full bg-primary hover:bg-indigo-700 text-white py-2.5 rounded-lg text-sm font-semibold transition-colors mt-2">
                 Apply Filters
             </button>
         </aside>
@@ -101,89 +96,163 @@
         <div class="w-full md:w-3/4">
             <div class="flex justify-between items-center mb-6">
                 <h1 class="text-2xl font-bold text-gray-900">Explore PGs</h1>
-                <span class="text-sm text-gray-500">Showing 24 properties</span>
+                <span id="pg-count" class="text-sm text-gray-500">Loading…</span>
+            </div>
+
+            <!-- Loading State -->
+            <div id="pg-loading" class="flex justify-center items-center py-20 text-gray-400">
+                <i class="fa-solid fa-spinner fa-spin text-3xl mr-3"></i>
+                <span>Loading PGs…</span>
+            </div>
+
+            <!-- Empty State -->
+            <div id="pg-empty" class="hidden flex flex-col items-center justify-center py-20 text-gray-400">
+                <i class="fa-solid fa-house-circle-xmark text-5xl mb-4"></i>
+                <p class="text-lg font-medium">No PGs match your filters</p>
+                <p class="text-sm mt-1">Try adjusting your budget or gender filters</p>
             </div>
 
             <!-- Grid Container -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                
-                <!-- Property Card 1 -->
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow group cursor-pointer">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="PG Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                        <span class="absolute top-3 right-3 bg-white px-2 py-1 rounded-md text-xs font-bold text-gray-800 shadow">Boys Only</span>
-                        <button class="absolute bottom-3 right-3 h-8 w-8 bg-white/80 backdrop-blur rounded-full flex items-center justify-center text-gray-500 hover:text-red-500 transition-colors">
-                            <i class="fa-regular fa-heart"></i>
-                        </button>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-bold text-gray-900 leading-tight">Sunrise Premium PG</h3>
-                            <div class="flex items-center gap-1 text-sm font-semibold bg-green-100 text-green-700 px-1.5 py-0.5 rounded">
-                                <span>4.8</span>
-                                <i class="fa-solid fa-star text-[10px]"></i>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-500 mb-3"><i class="fa-solid fa-location-dot mr-1"></i> Koramangala, Bengaluru</p>
-                        <div class="flex gap-2 mb-4">
-                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md"><i class="fa-solid fa-wifi mr-1"></i>WiFi</span>
-                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md"><i class="fa-solid fa-snowflake mr-1"></i>AC</span>
-                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md"><i class="fa-solid fa-utensils mr-1"></i>Food</span>
-                        </div>
-                        <div class="flex justify-between items-center pt-3 border-t border-gray-100">
-                            <div>
-                                <span class="text-lg font-bold text-gray-900">₹8,500</span>
-                                <span class="text-xs text-gray-500">/month</span>
-                            </div>
-                            <button class="text-primary text-sm font-semibold hover:underline">View Details</button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Property Card 2 -->
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow group cursor-pointer">
-                    <div class="relative h-48 overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="PG Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-                        <span class="absolute top-3 right-3 bg-pink-100 text-pink-700 px-2 py-1 rounded-md text-xs font-bold shadow">Girls Only</span>
-                    </div>
-                    <div class="p-4">
-                        <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-lg font-bold text-gray-900 leading-tight">Lotus Safe Homes</h3>
-                            <div class="flex items-center gap-1 text-sm font-semibold bg-green-100 text-green-700 px-1.5 py-0.5 rounded">
-                                <span>4.5</span>
-                                <i class="fa-solid fa-star text-[10px]"></i>
-                            </div>
-                        </div>
-                        <p class="text-sm text-gray-500 mb-3"><i class="fa-solid fa-location-dot mr-1"></i> HSR Layout, Bengaluru</p>
-                        <div class="flex gap-2 mb-4">
-                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md"><i class="fa-solid fa-video mr-1"></i>CCTV</span>
-                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md"><i class="fa-solid fa-wind mr-1"></i>Non-AC</span>
-                        </div>
-                        <div class="flex justify-between items-center pt-3 border-t border-gray-100">
-                            <div>
-                                <span class="text-lg font-bold text-gray-900">₹6,000</span>
-                                <span class="text-xs text-gray-500">/month</span>
-                            </div>
-                            <button class="text-primary text-sm font-semibold hover:underline">View Details</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            
-            <!-- Pagination -->
-            <div class="flex justify-center mt-10">
-                <div class="flex gap-2">
-                    <button class="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-500 hover:bg-gray-50">Previous</button>
-                    <button class="px-4 py-2 bg-primary text-white rounded-lg text-sm font-medium">1</button>
-                    <button class="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">2</button>
-                    <button class="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50">3</button>
-                    <button class="px-4 py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-500 hover:bg-gray-50">Next</button>
-                </div>
-            </div>
-
+            <div id="pg-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </div>
     </main>
+
+    <script>
+        const PLACEHOLDER_IMAGES = [
+            "assets/ghs1.jpg",
+            "assets/ghs2.jpg",
+            "assets/ghs3.jpg",
+            "assets/ghs4.jpg",
+            "assets/ghs5.jpg"
+        ];
+
+        const GENDER_LABELS = {
+            boys:   { text: "Boys Only",   cls: "bg-blue-100 text-blue-700" },
+            girls:  { text: "Girls Only",  cls: "bg-pink-100 text-pink-700" },
+            unisex: { text: "Unisex",      cls: "bg-green-100 text-green-700" }
+        };
+
+        function escapeHtml(str) {
+            const div = document.createElement("div");
+            div.textContent = String(str);
+            return div.innerHTML;
+        }
+
+        let allPgs = [];
+
+        function renderCards(pgs) {
+            const grid    = document.getElementById("pg-grid");
+            const empty   = document.getElementById("pg-empty");
+            const counter = document.getElementById("pg-count");
+
+            grid.innerHTML = "";
+
+            if (pgs.length === 0) {
+                empty.classList.remove("hidden");
+                counter.textContent = "No properties found";
+                return;
+            }
+
+            empty.classList.add("hidden");
+            counter.textContent = `Showing ${pgs.length} propert${pgs.length === 1 ? "y" : "ies"}`;
+
+            pgs.forEach((pg, index) => {
+                const img    = PLACEHOLDER_IMAGES[index % PLACEHOLDER_IMAGES.length];
+                const gender = GENDER_LABELS[pg.gender] || { text: escapeHtml(pg.gender), cls: "bg-gray-100 text-gray-700" };
+                const rawDesc = (pg.description || "").substring(0, 100);
+                const desc = escapeHtml(rawDesc);
+                const foodBadge = parseInt(pg.food)
+                    ? `<span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md"><i class="fa-solid fa-utensils mr-1"></i>Food</span>`
+                    : "";
+
+                const card = document.createElement("div");
+                card.className = "bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition-shadow group cursor-pointer";
+                card.innerHTML = `
+                    <div class="relative h-48 overflow-hidden">
+                        <img src="${escapeHtml(img)}" alt="PG Room" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+                        <span class="absolute top-3 right-3 ${gender.cls} px-2 py-1 rounded-md text-xs font-bold shadow">${gender.text}</span>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-lg font-bold text-gray-900 leading-tight">${escapeHtml(pg.name)}</h3>
+                            <span class="text-xs text-gray-500 whitespace-nowrap ml-2">${escapeHtml(pg.distance)} km</span>
+                        </div>
+                        <p class="text-sm text-gray-500 mb-3">${desc}${desc.length === 100 ? "…" : ""}</p>
+                        <div class="flex gap-2 mb-4 flex-wrap">
+                            ${foodBadge}
+                            <span class="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-md">
+                                <i class="fa-solid fa-money-bill-wave mr-1"></i>Deposit ₹${escapeHtml(pg.deposit)}
+                            </span>
+                        </div>
+                        <div class="flex justify-between items-center pt-3 border-t border-gray-100">
+                            <div>
+                                <span class="text-lg font-bold text-gray-900">₹${escapeHtml(pg.rent)}</span>
+                                <span class="text-xs text-gray-500">/month</span>
+                            </div>
+                            <button class="text-primary text-sm font-semibold hover:underline view-details-btn">View Details</button>
+                        </div>
+                    </div>
+                `;
+
+                card.querySelector(".view-details-btn").addEventListener("click", () => {
+                    window.location.href = `html/details.html?id=${encodeURIComponent(pg.id)}`;
+                });
+
+                grid.appendChild(card);
+            });
+        }
+
+        function applyFilters() {
+            const maxBudget      = parseInt(document.getElementById("budgetFilter").value);
+            const foodOnly       = document.getElementById("foodFilter").checked;
+            const checkedGenders = Array.from(document.querySelectorAll(".gender-filter:checked")).map(el => el.value);
+
+            const filtered = allPgs.filter(pg => {
+                if (!checkedGenders.includes(pg.gender)) return false;
+                if (parseInt(pg.rent) > maxBudget) return false;
+                if (foodOnly && !parseInt(pg.food)) return false;
+                return true;
+            });
+
+            renderCards(filtered);
+        }
+
+        // Update budget label live
+        document.getElementById("budgetFilter").addEventListener("input", function () {
+            const val = parseInt(this.value);
+            document.getElementById("budgetLabel").textContent =
+                val >= 25000 ? "₹25,000+" : `₹${val.toLocaleString("en-IN")}`;
+        });
+
+        document.getElementById("applyFilters").addEventListener("click", applyFilters);
+
+        document.getElementById("clearFilters").addEventListener("click", () => {
+            document.getElementById("budgetFilter").value = 25000;
+            document.getElementById("budgetLabel").textContent = "₹25,000+";
+            document.getElementById("foodFilter").checked = false;
+            document.querySelectorAll(".gender-filter").forEach(cb => { cb.checked = true; });
+            renderCards(allPgs);
+        });
+
+        // Fetch PGs from backend
+        fetch("backend/api/get_pgs.php")
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById("pg-loading").classList.add("hidden");
+
+                if (data.status !== "success" || !Array.isArray(data.data)) {
+                    document.getElementById("pg-count").textContent = "Failed to load PGs";
+                    return;
+                }
+
+                allPgs = data.data;
+                renderCards(allPgs);
+            })
+            .catch(() => {
+                document.getElementById("pg-loading").classList.add("hidden");
+                document.getElementById("pg-count").textContent = "Failed to load PGs";
+            });
+    </script>
 
 </body>
 </html>

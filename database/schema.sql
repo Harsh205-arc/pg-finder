@@ -9,6 +9,7 @@ CREATE TABLE pgs (
     gender ENUM('boys', 'girls', 'unisex') NOT NULL,
     food BOOLEAN DEFAULT 0,
     distance FLOAT NOT NULL,
+    description TEXT,
     verified BOOLEAN DEFAULT 0,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );

@@ -1,35 +1,29 @@
 <?php
 
-ini_set ('display_errors',1);
-ini_set('display_startup_errors',1);
-error_reporting(E_ALL);
+header("Content-Type: application/json");
 
-header ("Content-Type:application/json");
+require __DIR__ . "/../config/db.php";
 
-require __DIR__ ."/../config/db.php";
-
-try{
-    $stmt = $pdo ->prepare(
-        "SELECT id, name, rent, deposit, gender, description 
-         FROM pgs;
-         WHERE verified =1
-         ORDER by distance ASC"
+try {
+    $stmt = $pdo->prepare(
+        "SELECT id, name, rent, deposit, gender, description, distance, food
+         FROM pgs
+         WHERE verified = 1
+         ORDER BY distance ASC"
     );
 
-$stmt->execute();
-$pgs= $stmt->fetchAll();
+    $stmt->execute();
+    $pgs = $stmt->fetchAll();
 
-echo json_encode([
-    "status"=>"success",
-    "data"=> $pgs
-]);
-}
-
-catch(Exception $e){
+    echo json_encode([
+        "status" => "success",
+        "data"   => $pgs
+    ]);
+} catch (Exception $e) {
     http_response_code(500);
 
     echo json_encode([
-    "status"=> "Failed",
-    "message"=>"failed to fetch PGs"
+        "status"  => "error",
+        "message" => "Failed to fetch PGs"
     ]);
 }
