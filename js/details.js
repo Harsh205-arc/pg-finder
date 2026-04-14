@@ -12,12 +12,10 @@ fetch(`../backend/api/get_details.php?id=${id}`)
     const container = document.getElementById("pg-details");
 
     container.innerHTML = `
-      <div class="hero-text">
-        <h1>${pg.name}</h1>
-        <p class="price">₹${pg.rent}</p>
-        <p>${pg.description}</p>
-        <button class="book-btn">Book Now</button>
-      </div>
+      <h1>${pg.name}</h1>
+      <p class="price">₹${pg.rent}/month</p>
+      <p>${pg.description}</p>
+      <button class="book-btn">Book Now</button>
     `;
   })
   .catch(err => console.error(err));

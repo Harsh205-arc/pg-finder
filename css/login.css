@@ -1,0 +1,86 @@
+/* ===== Global ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #2f3e34;
+    color: #e5e7eb;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: #2f3e34;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.navbar h2 {
+    color: white;
+}
+
+.navbar a {
+    color: #d1d5db;
+    text-decoration: none;
+}
+
+/* ===== Center Layout ===== */
+.login-container {
+    height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== Login Box ===== */
+.login-box {
+    background: #3a4a3f;
+    padding: 40px;
+    border-radius: 12px;
+    width: 350px;
+
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+/* ===== Title ===== */
+.login-box h2 {
+    margin-bottom: 20px;
+    color: white;
+}
+
+/* ===== Inputs ===== */
+.login-box input {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+
+    border-radius: 8px;
+    border: none;
+    outline: none;
+
+    background: #2f3e34;
+    color: white;
+}
+
+/* ===== Button ===== */
+.login-box button {
+    width: 100%;
+    padding: 12px;
+
+    border: 1px solid #e5e7eb;
+    background: transparent;
+    color: white;
+
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.login-box button:hover {
+    background: #e5e7eb;
+    color: #1f2937;
+}

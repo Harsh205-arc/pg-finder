@@ -15,16 +15,16 @@ fetch(`../backend/api/get_owner_pgs.php?owner_id=${ownerId}`)
             div.className = "pg-card";
 
             div.innerHTML = `
-                <div>
-                    <h3>${pg.name}</h3>
-                    <p>Rent: ₹${pg.rent}</p>
-                    <p>Deposit: ₹${pg.deposit}</p>
-                </div>
-                <button onclick="viewPG(${pg.id})" class="view-btn">
-                    View
-                </button>
-            `;
+            <div class="pg-info">
+                <h3 style="color:white;">${pg.name}</h3>
+                <p style="color:#cbd5e1;">Rent: ₹${pg.rent}</p>
+                <p style="color:#cbd5e1;">Deposit: ₹${pg.deposit}</p>
+            </div>
 
+            <div class="pg-action">
+                <button class="btn">View</button>
+            </div>
+            `;
             container.appendChild(div);
         });
     });

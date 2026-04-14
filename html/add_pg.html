@@ -20,44 +20,26 @@
   <h2>Add Your PG</h2>
 
   <form id="pgForm">
-    
-    <div class="form-group">
-      <label>Name</label>
-      <input type="text" name="name" required>
-    </div>
 
-    <div class="form-group">
-      <label>Rent</label>
-      <input type="number" name="rent" placeholder="₹" required>
-    </div>
+  <input type="text" name="name" placeholder="PG Name" required>
 
-    <div class="form-group">
-      <label>Deposit</label>
-      <input type="number" name="deposit" placeholder="₹" required>
-    </div>
+  <input type="number" name="rent" placeholder="Rent (₹)" required>
 
-    <div class="form-group">
-        <label>Gender</label>
-        <select name="gender" required>
-        <option value="" disabled selected>Select Gender</option>
-        <option value="boys">Boys</option>
-        <option value="girls">Girls</option>
+  <input type="number" name="deposit" placeholder="Deposit (₹)" required>
+
+  <select name="gender" required>
+    <option value="" disabled selected>Select Gender</option>
+    <option value="boys">Boys</option>
+    <option value="girls">Girls</option>
   </select>
-</div>
 
-    <div class="form-group">
-      <label>Distance (km)</label>
-      <input type="number" name="distance" required>
-    </div>
+  <input type="number" name="distance" placeholder="Distance (km)" required>
 
-    <div class="form-group">
-      <label>Description</label>
-      <textarea name="description" required></textarea>
-    </div>
+  <textarea name="description" placeholder="Description" required></textarea>
 
-    <button type="submit" class="submit-btn">Submit</button>
+  <button type="submit" class="submit-btn">Submit</button>
 
-  </form>
+</form>
 </div>
 </body>
 </html>
