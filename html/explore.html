@@ -11,7 +11,7 @@
 
 <header class="navbar">
     <h2>PBL-2 Project</h2>
-    <a href="add_pg.html">Add Hostel</a>
+    <a href="owner_login.html">Owner Login</a>
 </header>
 
 <section class="explore-hero">
@@ -28,5 +28,14 @@
 </footer>
 
 <script src="../js/explore.js"></script>
+
+<script>
+const navLink = document.querySelector(".navbar a");
+
+if (localStorage.getItem("owner_id")) {
+    navLink.textContent = "Add Hostel";
+    navLink.href = "add_pg.html";
+}
+</script>
 
 </html>

@@ -25,7 +25,7 @@ fetch("../backend/api/get_pgs.php")
       `;
 
       div.querySelector(".view-btn").addEventListener("click", () => {
-        window.location.href = `details.html?id=${pg.id}`;
+        window.location.href = `details.html?id=${pg.id}&from=explore`;
       });
 
       pgList.appendChild(div);

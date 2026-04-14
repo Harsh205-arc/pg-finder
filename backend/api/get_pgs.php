@@ -11,7 +11,7 @@ require __DIR__ ."/../config/db.php";
 try{
     $stmt = $pdo ->prepare(
         "SELECT id, name, rent, deposit, gender, description 
-         FROM pgs;
+         FROM pgs
          WHERE verified =1
          ORDER by distance ASC"
     );
