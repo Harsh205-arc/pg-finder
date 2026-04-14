@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/form.css">
+    <script src="../js/add_pg.js" defer></script>
+
+</head>
+
+<body>
+
+    <header class="navbar">
+        <h2>PBL-2 Project</h2>
+        <a href="#" id="back-btn">Back</a>
+    </header>
+
+   <div class="form-container">
+  <h2>Add Your PG</h2>
+
+  <form id="pgForm">
+
+  <input type="text" name="name" placeholder="PG Name" required>
+
+  <input type="number" name="rent" placeholder="Rent (₹)" required>
+
+  <input type="number" name="deposit" placeholder="Deposit (₹)" required>
+
+  <select name="gender" required>
+    <option value="" disabled selected>Select Gender</option>
+    <option value="boys">Boys</option>
+    <option value="girls">Girls</option>
+  </select>
+
+  <input type="number" name="distance" placeholder="Distance (km)" required>
+
+  <textarea name="description" placeholder="Description" required></textarea>
+
+  <button type="submit" class="submit-btn">Submit</button>
+
+</form>
+</div>
+</body>
+</html>

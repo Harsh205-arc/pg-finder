@@ -1,0 +1,65 @@
+/* ===== Navbar ===== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 60px;
+    background: #2f3e34;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+.navbar h2 {
+    color: white;
+}
+
+.navbar a {
+    color: #d1d5db;
+    text-decoration: none;
+}
+
+/* ===== Section ===== */
+.dashboard {
+    padding: 40px 100px;
+}
+
+/* ===== Card List ===== */
+.pg-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: #3a4a3f;
+    padding: 20px;
+    border-radius: 12px;
+
+    border: 1px solid rgba(255,255,255,0.05);
+
+    margin-bottom: 20px;
+}
+
+/* ===== Info ===== */
+.pg-info h3 {
+    color: white;
+    margin-bottom: 5px;
+}
+
+.pg-info p {
+    color: #cbd5e1;
+}
+
+/* ===== Buttons ===== */
+.btn {
+    padding: 8px 16px;
+    border: 1px solid #e5e7eb;
+    background: transparent;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.btn:hover {
+    background: #e5e7eb;
+    color: #1f2937;
+}
+.pg-info {
+    color: white;
+}

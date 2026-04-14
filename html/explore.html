@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PG_finder</title>
+    <link rel="stylesheet" href="../css/explore.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="navbar">
+    <h2>PBL-2 Project</h2>
+    <a href="owner_login.html">Owner Login</a>
+</header>
+
+<section class="explore-hero">
+    <h1>PGs Near Campus</h1>
+    <p>Find premium student accommodation near Manipal University Jaipur</p>
+</section>
+
+<div class="filters">
+    <input type="text" id="searchInput" placeholder="Search PGs...">
+        <button data-filter="all">All</button>
+        <button data-filter="boys">Boys</button>
+        <button data-filter="girls">Girls</button>
+</div>
+
+<section class="pg-section">
+    <div class="container">
+        <div id="pg-list" class="pg-grid"></div>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 PBL-2 Project</p>
+</footer>
+
+<script src="../js/explore.js"></script>
+
+<script>
+const navLink = document.querySelector(".navbar a");
+
+if (localStorage.getItem("owner_id")) {
+    navLink.textContent = "Add Hostel";
+    navLink.href = "add_pg.html";
+}
+</script>
+
+</html>
